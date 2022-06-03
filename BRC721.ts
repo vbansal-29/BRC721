@@ -11,7 +11,7 @@ export class BRC721 {
     async transfer(from: string, to: string, tokenId: number) {
         const revs = await this.computer.getRevs(tokenId)
         const bucket = await Promise.resolve(revs.map(rev => this.computer.sync(rev)))
-        if (!bucket._owners.includes(from)) {
+        if (!bucket[0]._owners.includes(from)) {
           throw new Error()
         }
         else {
